@@ -33,8 +33,6 @@ const oneYearFromNow = `${currentYear + 1}-${currentMonth}-${currentDay}`;
 
 const popular_games = `games?dates=${oneYearAgo},${todaysDate}&ordering=-rating&page_size=10`;
 
-const popularGamesURL = () => {
+export const popularGamesURL = () => {
   return `${base_url}${popular_games}`;
 };
-
-console.log(popularGamesURL());
