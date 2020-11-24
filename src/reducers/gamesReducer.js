@@ -1,17 +1,16 @@
 const initState = {
-    popularGames = [],
-    newGames = [],
-    comingSoonGames =[]
-}
+  popularGames: [],
+  newGames: [],
+  comingSoonGames: [],
+};
 
-const gamesReducer = (state=initState, action) => {
-
-    switch(action.type) {
-        case "FETCH_GAMES":
-            return {... state}
-        default:
-            return {... state}
-    }
-}
+const gamesReducer = (state = initState, action) => {
+  switch (action.type) {
+    case "FETCH_GAMES":
+      return { ...state };
+    default:
+      return { ...state };
+  }
+};
 
 export default gamesReducer;
