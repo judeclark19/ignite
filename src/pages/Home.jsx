@@ -20,6 +20,32 @@ function Home() {
 
   return (
     <GameListDiv>
+      <h2>Popular Games</h2>
+      <GamesDiv>
+        {popularGames.map((game) => (
+          <Game
+            name={game.name}
+            releaseDate={game.released}
+            id={game.id}
+            key={game.id}
+            image={game.background_image}
+          />
+        ))}
+      </GamesDiv>
+
+      <h2>New Games</h2>
+      <GamesDiv>
+        {newGames.map((game) => (
+          <Game
+            name={game.name}
+            releaseDate={game.released}
+            id={game.id}
+            key={game.id}
+            image={game.background_image}
+          />
+        ))}
+      </GamesDiv>
+
       <h2>Upcoming Games</h2>
       <GamesDiv>
         {upcomingGames.map((game) => (

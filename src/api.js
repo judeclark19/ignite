@@ -30,21 +30,21 @@ const oneYearAgo = `${currentYear - 1}-${currentMonth}-${currentDay}`;
 const oneYearFromNow = `${currentYear + 1}-${currentMonth}-${currentDay}`;
 
 //Popular Games
-const popular_games = `games?dates=${oneYearAgo},${todaysDate}&ordering=-rating&page_size=10`;
+const popular_games = `games?dates=${oneYearAgo},${todaysDate}&ordering=-rating&page_size=12`;
 
 export const popularGamesURL = () => {
   return `${base_url}${popular_games}`;
 };
 
 //Upcoming Games
-const upcoming_games = `games?dates=${todaysDate},${oneYearFromNow}&ordering=-added&page_size=10`;
+const upcoming_games = `games?dates=${todaysDate},${oneYearFromNow}&ordering=-added&page_size=12`;
 
 export const upcomingGamesURL = () => {
   return `${base_url}${upcoming_games}`;
 };
 
 //New Games
-const new_games = `games?dates=${oneYearAgo},${todaysDate}&ordering=-released&page_size=10`;
+const new_games = `games?dates=${oneYearAgo},${todaysDate}&ordering=-released&page_size=12`;
 
 export const newGamesURL = () => {
   return `${base_url}${new_games}`;
