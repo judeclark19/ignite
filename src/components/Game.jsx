@@ -2,9 +2,19 @@ import React from "react";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
-function Game({ name, releaseDate, image }) {
+//Redux
+import { useDispatch } from "react-redux";
+import { fetchDetails } from "../actions/detailAction";
+
+function Game({ name, releaseDate, image, id }) {
+  const dispatch = useDispatch();
+
+  const fetchDetailsHandler = () => {
+    dispatch(fetchDetails(id));
+  };
+
   return (
-    <StyledGameDiv>
+    <StyledGameDiv onClick={fetchDetailsHandler}>
       <h3>{name}</h3>
       <p>Release Date: {releaseDate}</p>
       <img src={image} alt={name} />
