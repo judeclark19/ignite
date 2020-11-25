@@ -49,3 +49,8 @@ const new_games = `games?dates=${oneYearAgo},${todaysDate}&ordering=-released&pa
 export const newGamesURL = () => {
   return `${base_url}${new_games}`;
 };
+
+//Game details
+export const gameDetailsURL = (gameId) => {
+  return `${base_url}games/${gameId}`;
+};
