@@ -1,0 +1,54 @@
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchGames } from "../actions/gamesActions";
+
+import styled from "styled-components";
+import { motion } from "framer-motion";
+
+import Game from "../components/Game";
+
+function Home() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchGames());
+  }, [dispatch]);
+
+  const { popularGames, newGames, upcomingGames } = useSelector(
+    (state) => state.games
+  );
+
+  return (
+    <GameListDiv>
+      <h2>Upcoming Games</h2>
+      <GamesDiv>
+        {upcomingGames.map((game) => (
+          <Game
+            name={game.name}
+            releaseDate={game.released}
+            id={game.id}
+            key={game.id}
+            image={game.background_image}
+          />
+        ))}
+      </GamesDiv>
+    </GameListDiv>
+  );
+}
+
+const GameListDiv = styled(motion.div)`
+  padding: 0rem 5rem;
+  h2 {
+    padding: 5rem 0rem;
+  }
+`;
+
+const GamesDiv = styled(motion.div)`
+  min-height: 80vh;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-column-gap: 3rem;
+  grid-row-gap: 3rem;
+`;
+
+export default Home;
