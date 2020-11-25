@@ -17,24 +17,32 @@ function GameDetail() {
           <div className="info">
             <h3>Platforms</h3>
             <div className="platforms">
-              {game.platforms.map((platform) => (
-                <h3 key={platform.platform.id}>{platform.platform.name}</h3>
-              ))}
+              {game.platforms && (
+                <>
+                  {game.platforms.map((platform) => (
+                    <p>{platform.platform.name}</p>
+                  ))}
+                </>
+              )}
             </div>
           </div>
         </div>
 
         <div className="media">
-          <img src={game.background_image} alt="image" />
+          {game.background_image && (
+            <img src={game.background_image} alt="image" />
+          )}
         </div>
         <div className="gallery">
-          {screenshots.results.map((screenshot) => (
-            <img
-              src={screenshot.image}
-              alt="gallery image"
-              key={screenshot.id}
-            />
-          ))}
+          {screenshots.results && (
+            <>
+              {screenshots.results.map((screenshot) => (
+                <>
+                  <img src={screenshot.image} alt="image" />
+                </>
+              ))}
+            </>
+          )}
         </div>
       </div>
     </div>
