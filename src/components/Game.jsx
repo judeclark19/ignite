@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 
@@ -15,14 +16,19 @@ function Game({ name, releaseDate, image, id }) {
 
   return (
     <StyledGameDiv onClick={fetchDetailsHandler}>
-      <h3>{name}</h3>
-      <p>Release Date: {releaseDate}</p>
-      <img src={image} alt={name} />
+      <Link to={`/game/${id}`}>
+        <CardTextDiv>
+          <h3>{name}</h3>
+          <p>Release Date: {releaseDate}</p>
+        </CardTextDiv>
+        <img src={image} alt={name} />
+      </Link>
     </StyledGameDiv>
   );
 }
 
 const StyledGameDiv = styled(motion.div)`
+  cursor: pointer;
   min-height: 30vh;
   box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
   text-align: center;
@@ -32,6 +38,10 @@ const StyledGameDiv = styled(motion.div)`
     height: 40vh;
     object-fit: cover;
   }
+`;
+
+const CardTextDiv = styled.div`
+  padding: 1rem 0rem;
 `;
 
 export default Game;

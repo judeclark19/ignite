@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 import { fetchGames } from "../actions/gamesActions";
 
 import styled from "styled-components";
@@ -9,6 +10,7 @@ import Game from "../components/Game";
 import GameDetail from "../components/GameDetail";
 
 function Home() {
+  const location = useLocation();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -21,7 +23,7 @@ function Home() {
 
   return (
     <GameListDiv>
-      <GameDetail />
+      {/* <GameDetail /> */}
       <h2>Popular Games</h2>
       <GamesDiv>
         {popularGames.map((game) => (

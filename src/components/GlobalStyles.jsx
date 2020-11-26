@@ -12,8 +12,11 @@ html{
         width: .5rem;
     }
     &::-webkit-scrollbar-thumb{
-        background-color: #333;
+        background-color: #555;
         border-radius: .5rem;
+    }
+    &::-webkit-scrollbar-track{
+        background-color: white;
     }
 }
 
@@ -30,7 +33,7 @@ h2{
 h3{
     font-size: 1.3rem;
     color: #333;
-    padding: 1.5rem;
+    /* padding: 1.5rem; */
 }
 
 p{
