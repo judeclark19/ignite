@@ -11,6 +11,7 @@ function Game({ name, releaseDate, image, id }) {
   const dispatch = useDispatch();
 
   const fetchDetailsHandler = () => {
+    document.body.style.overflow = "hidden";
     dispatch(fetchDetails(id));
   };
 
@@ -30,9 +31,10 @@ function Game({ name, releaseDate, image, id }) {
 const StyledGameDiv = styled(motion.div)`
   cursor: pointer;
   min-height: 30vh;
-  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.27);
   text-align: center;
   border-radius: 1rem;
+  overflow: hidden;
   img {
     width: 100%;
     height: 40vh;

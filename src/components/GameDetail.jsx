@@ -1,15 +1,27 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 
 function GameDetail() {
+  const history = useHistory();
+
+  //Exit modal
+  const exitModalHandler = (e) => {
+    const element = e.target;
+    if (element.classList.contains("shadow")) {
+      document.body.style.overflow = "auto";
+      history.push("/");
+    }
+  };
+
   const { screenshots, game, isLoading } = useSelector((state) => state.detail);
 
   return (
     <>
       {!isLoading && (
-        <CardShadowDiv>
+        <CardShadowDiv className="shadow" onClick={exitModalHandler}>
           <DetailDiv>
             <StatsDiv>
               <div className="rating">
