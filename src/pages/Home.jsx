@@ -11,6 +11,10 @@ import GameDetail from "../components/GameDetail";
 
 function Home() {
   const location = useLocation();
+
+  //This returns the pathname as an array separated by the slash. /game/id returns 3 items in the array: ["", "game", "the ID"]
+  const pathID = location.pathname.split("/")[2];
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,7 +27,7 @@ function Home() {
 
   return (
     <GameListDiv>
-      {/* <GameDetail /> */}
+      {pathID && <GameDetail />}
       <h2>Popular Games</h2>
       <GamesDiv>
         {popularGames.map((game) => (

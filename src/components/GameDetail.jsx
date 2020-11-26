@@ -4,52 +4,56 @@ import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 
 function GameDetail() {
-  const { screenshots, game } = useSelector((state) => state.detail);
+  const { screenshots, game, isLoading } = useSelector((state) => state.detail);
 
   return (
-    <CardShadowDiv>
-      <DetailDiv>
-        <StatsDiv>
-          <div className="rating">
-            <h3>{game.name}</h3>
-            <p>Rating: {game.rating}</p>
-          </div>
-          <InfoDiv>
-            <h3>Platforms</h3>
-            <PlatformsDiv>
-              {game.platforms && (
+    <>
+      {!isLoading && (
+        <CardShadowDiv>
+          <DetailDiv>
+            <StatsDiv>
+              <div className="rating">
+                <h3>{game.name}</h3>
+                <p>Rating: {game.rating}</p>
+              </div>
+              <InfoDiv>
+                <h3>Platforms</h3>
+                <PlatformsDiv>
+                  {game.platforms && (
+                    <>
+                      {game.platforms.map((platform) => (
+                        <p>{platform.platform.name}</p>
+                      ))}
+                    </>
+                  )}
+                </PlatformsDiv>
+              </InfoDiv>
+            </StatsDiv>
+
+            <MediaDiv>
+              {game.background_image && (
+                <img src={game.background_image} alt="main" />
+              )}
+            </MediaDiv>
+            <DescriptionDiv>
+              <p>{game.description_raw}</p>
+            </DescriptionDiv>
+
+            <div className="gallery">
+              {screenshots.results && (
                 <>
-                  {game.platforms.map((platform) => (
-                    <p>{platform.platform.name}</p>
+                  {screenshots.results.map((screenshot) => (
+                    <>
+                      <img src={screenshot.image} alt="screenshot" />
+                    </>
                   ))}
                 </>
               )}
-            </PlatformsDiv>
-          </InfoDiv>
-        </StatsDiv>
-
-        <MediaDiv>
-          {game.background_image && (
-            <img src={game.background_image} alt="main" />
-          )}
-        </MediaDiv>
-        <DescriptionDiv>
-          <p>{game.description_raw}</p>
-        </DescriptionDiv>
-
-        <div className="gallery">
-          {screenshots.results && (
-            <>
-              {screenshots.results.map((screenshot) => (
-                <>
-                  <img src={screenshot.image} alt="screenshot" />
-                </>
-              ))}
-            </>
-          )}
-        </div>
-      </DetailDiv>
-    </CardShadowDiv>
+            </div>
+          </DetailDiv>
+        </CardShadowDiv>
+      )}
+    </>
   );
 }
 
