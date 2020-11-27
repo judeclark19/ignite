@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 import { fetchGames } from "../actions/gamesActions";
 
 import styled from "styled-components";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
 
 import Game from "../components/Game";
 import GameDetail from "../components/GameDetail";
@@ -27,45 +27,50 @@ function Home() {
 
   return (
     <GameListDiv>
-      {pathID && <GameDetail />}
-      <h2>Popular Games</h2>
-      <GamesDiv>
-        {popularGames.map((game) => (
-          <Game
-            name={game.name}
-            releaseDate={game.released}
-            id={game.id}
-            key={game.id}
-            image={game.background_image}
-          />
-        ))}
-      </GamesDiv>
+      {/* Ed says: any component that you add AnimatePresence to should have some sort of toggle functionality */}
+      <AnimateSharedLayout type="crossfade">
+        <AnimatePresence>
+          {pathID && <GameDetail pathID={pathID} />}
+        </AnimatePresence>
+        <h2>Popular Games</h2>
+        <GamesDiv>
+          {popularGames.map((game) => (
+            <Game
+              name={game.name}
+              releaseDate={game.released}
+              id={game.id}
+              key={game.id}
+              image={game.background_image}
+            />
+          ))}
+        </GamesDiv>
 
-      <h2>New Games</h2>
-      <GamesDiv>
-        {newGames.map((game) => (
-          <Game
-            name={game.name}
-            releaseDate={game.released}
-            id={game.id}
-            key={game.id}
-            image={game.background_image}
-          />
-        ))}
-      </GamesDiv>
+        <h2>New Games</h2>
+        <GamesDiv>
+          {newGames.map((game) => (
+            <Game
+              name={game.name}
+              releaseDate={game.released}
+              id={game.id}
+              key={game.id}
+              image={game.background_image}
+            />
+          ))}
+        </GamesDiv>
 
-      <h2>Upcoming Games</h2>
-      <GamesDiv>
-        {upcomingGames.map((game) => (
-          <Game
-            name={game.name}
-            releaseDate={game.released}
-            id={game.id}
-            key={game.id}
-            image={game.background_image}
-          />
-        ))}
-      </GamesDiv>
+        <h2>Upcoming Games</h2>
+        <GamesDiv>
+          {upcomingGames.map((game) => (
+            <Game
+              name={game.name}
+              releaseDate={game.released}
+              id={game.id}
+              key={game.id}
+              image={game.background_image}
+            />
+          ))}
+        </GamesDiv>
+      </AnimateSharedLayout>
     </GameListDiv>
   );
 }

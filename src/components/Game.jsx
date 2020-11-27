@@ -9,6 +9,8 @@ import { useDispatch } from "react-redux";
 import { fetchDetails } from "../actions/detailAction";
 
 function Game({ name, releaseDate, image, id }) {
+  const pathIdString = id.toString();
+
   const dispatch = useDispatch();
 
   const fetchDetailsHandler = () => {
@@ -17,13 +19,17 @@ function Game({ name, releaseDate, image, id }) {
   };
 
   return (
-    <StyledGameDiv onClick={fetchDetailsHandler}>
+    <StyledGameDiv layoutId={pathIdString} onClick={fetchDetailsHandler}>
       <Link to={`/game/${id}`}>
         <CardTextDiv>
-          <h3>{name}</h3>
+          <motion.h3 layoutId={`title ${pathIdString}`}>{name}</motion.h3>
           <p>Release Date: {releaseDate}</p>
         </CardTextDiv>
-        <img src={resizeImage(image, 640)} alt={name} />
+        <motion.img
+          layoutId={`image ${pathIdString}`}
+          src={resizeImage(image, 640)}
+          alt={name}
+        />
       </Link>
     </StyledGameDiv>
   );

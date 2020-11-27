@@ -5,7 +5,17 @@ import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
 import { resizeImage } from "../util";
 
-function GameDetail() {
+//icons
+import playstation from "../img/playstation.svg";
+import steam from "../img/steam.svg";
+import xbox from "../img/xbox.svg";
+import nintendo from "../img/nintendo.svg";
+import apple from "../img/apple.svg";
+import gamepad from "../img/gamepad.svg";
+import starEmpty from "../img/star-empty.png";
+import starFull from "../img/star-full.png";
+
+function GameDetail({ pathID }) {
   const history = useHistory();
 
   //Exit modal
@@ -17,16 +27,41 @@ function GameDetail() {
     }
   };
 
+  //Display stars for rating
+  // const getStars
+
+  //Render platform icons
+  const getPlatformIcon = (platform) => {
+    switch (platform) {
+      case "PlayStation 5":
+        return playstation;
+      case "PlayStation 4":
+        return playstation;
+      case "Xbox Series S/X":
+        return xbox;
+      case "Xbox One":
+        return xbox;
+      case "PC":
+        return steam;
+      case "Nintendo Switch":
+        return nintendo;
+      case "iOS":
+        return apple;
+      default:
+        return gamepad;
+    }
+  };
+
   const { screenshots, game, isLoading } = useSelector((state) => state.detail);
 
   return (
     <>
       {!isLoading && (
         <CardShadowDiv className="shadow" onClick={exitModalHandler}>
-          <DetailDiv>
+          <DetailDiv layoutId={pathID}>
             <StatsDiv>
               <div className="rating">
-                <h3>{game.name}</h3>
+                <motion.h3 layoutId={`title ${pathID}`}>{game.name}</motion.h3>
                 <p>Rating: {game.rating}</p>
               </div>
               <InfoDiv>
@@ -35,7 +70,10 @@ function GameDetail() {
                   {game.platforms && (
                     <>
                       {game.platforms.map((platform) => (
-                        <p>{platform.platform.name}</p>
+                        <img
+                          key={platform.platform.id}
+                          src={getPlatformIcon(platform.platform.name)}
+                        ></img>
                       ))}
                     </>
                   )}
@@ -45,7 +83,8 @@ function GameDetail() {
 
             <MediaDiv>
               {game.background_image && (
-                <img
+                <motion.img
+                  layoutId={`image ${pathID}`}
                   src={resizeImage(game.background_image, 1280)}
                   alt="main"
                 />
@@ -87,6 +126,7 @@ const CardShadowDiv = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;
+  z-index: 5;
 
   &::-webkit-scrollbar {
     width: 0.5rem;
@@ -108,7 +148,7 @@ const DetailDiv = styled(motion.div)`
   position: absolute;
   left: 10%;
   color: black;
-
+  z-index: 10;
   img {
     width: 100%;
   }
@@ -125,7 +165,7 @@ const InfoDiv = styled(motion.div)`
 `;
 
 const PlatformsDiv = styled(motion.div)`
-  border: 2px dashed gray;
+  /* border: 2px dashed gray; */
   display: flex;
   justify-content: space-evenly;
   img {
