@@ -3,6 +3,7 @@ import { useHistory } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useSelector } from "react-redux";
+import { resizeImage } from "../util";
 
 function GameDetail() {
   const history = useHistory();
@@ -44,7 +45,10 @@ function GameDetail() {
 
             <MediaDiv>
               {game.background_image && (
-                <img src={game.background_image} alt="main" />
+                <img
+                  src={resizeImage(game.background_image, 1280)}
+                  alt="main"
+                />
               )}
             </MediaDiv>
             <DescriptionDiv>
@@ -56,7 +60,10 @@ function GameDetail() {
                 <>
                   {screenshots.results.map((screenshot) => (
                     <>
-                      <img src={screenshot.image} alt="screenshot" />
+                      <img
+                        src={resizeImage(screenshot.image, 1280)}
+                        alt="screenshot"
+                      />
                     </>
                   ))}
                 </>

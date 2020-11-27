@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { motion } from "framer-motion";
+import { resizeImage } from "../util";
 
 //Redux
 import { useDispatch } from "react-redux";
@@ -22,7 +23,7 @@ function Game({ name, releaseDate, image, id }) {
           <h3>{name}</h3>
           <p>Release Date: {releaseDate}</p>
         </CardTextDiv>
-        <img src={image} alt={name} />
+        <img src={resizeImage(image, 640)} alt={name} />
       </Link>
     </StyledGameDiv>
   );
