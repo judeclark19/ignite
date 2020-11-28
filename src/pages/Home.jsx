@@ -5,6 +5,7 @@ import { fetchGames } from "../actions/gamesActions";
 
 import styled from "styled-components";
 import { motion, AnimatePresence, AnimateSharedLayout } from "framer-motion";
+import { fadeIn } from "../animations";
 
 import Game from "../components/Game";
 import GameDetail from "../components/GameDetail";
@@ -26,7 +27,7 @@ function Home() {
   );
 
   return (
-    <GameListDiv>
+    <GameListDiv variants={fadeIn} initial="hidden" animate="show">
       {/* Ed says: any component that you add AnimatePresence to should have some sort of toggle functionality */}
       <AnimateSharedLayout type="crossfade">
         <AnimatePresence>

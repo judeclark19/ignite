@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { resizeImage } from "../util";
 
+import { popIn } from "../animations";
+
 //Redux
 import { useDispatch } from "react-redux";
 import { fetchDetails } from "../actions/detailAction";
@@ -19,7 +21,13 @@ function Game({ name, releaseDate, image, id }) {
   };
 
   return (
-    <StyledGameDiv layoutId={pathIdString} onClick={fetchDetailsHandler}>
+    <StyledGameDiv
+      variants={popIn}
+      initial="hidden"
+      animate="show"
+      layoutId={pathIdString}
+      onClick={fetchDetailsHandler}
+    >
       <Link to={`/game/${id}`}>
         <CardTextDiv>
           <motion.h3 layoutId={`title ${pathIdString}`}>{name}</motion.h3>
