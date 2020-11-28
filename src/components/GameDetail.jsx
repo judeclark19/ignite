@@ -188,7 +188,7 @@ const PlatformsDiv = styled(motion.div)`
   display: flex;
   justify-content: space-evenly;
   img {
-    margin-left: 3rem;
+    margin: 1rem;
   }
 `;
 
